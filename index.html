@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrambling Visualizer (B8ZS / HDB3)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Scrambling Visualizer</h1>
+        <p>Enter a binary bit stream (e.g., 1000011000110000000010000):</p>
+        <div class="input-area">
+            <input type="text" id="bitInput" placeholder="Enter bits (0s and 1s)">
+            <button id="plotButton">Plot Initial</button>
+        </div>
+
+        <div id="visualizerSection" class="hidden">
+            <h2>Visualization</h2>
+            <!-- Main Controls Container -->
+            <div class="controls">
+
+                <!-- Algorithm Selection Row -->
+                <div class="algorithm-select">
+                    <label>Choose Scrambling:</label>
+                    <button id="b8zsButton" class="algo-button" disabled>B8ZS</button>
+                    <button id="hdb3Button" class="algo-button" disabled>HDB3</button>
+                </div>
+
+                <!-- Playback/Seek Controls Row -->
+                <div class="playback-seek-controls">
+                    <button id="playPauseButton" disabled>Play</button>
+
+                    <label for="speedControl">Speed:</label>
+                    <input type="range" id="speedControl" min="50" max="2000" value="500" step="50" disabled>
+                    <span id="speedValue">500 ms</span>
+
+                    <label for="seekSlider">Seek Step:</label>
+                    <input type="range" id="seekSlider" min="0" max="0" value="0" disabled>
+                    <span id="seekValue">0</span><span class="seek-separator">/</span><span id="seekMax">0</span> 
+
+                    <button id="resetButton">Reset</button>
+                </div>
+
+            </div> 
+
+            <div class="status-area">
+                <p>Status: <span id="statusText">Idle</span></p>
+                <p>Current Step: <span id="stepInfo">-</span></p>
+            </div>
+
+            <div class="canvas-container">
+                <label>Input Bits:</label>
+                <div id="inputBitsDisplay"></div>
+                <label>AMI / Scrambled Output:</label>
+                <canvas id="signalCanvas"></canvas>
+            </div>
+             <div class="legend">
+                <div><span style="color: var(--color-zero);">──</span> 0 Level</div>
+                <div><span style="color: var(--color-high);">──</span> +V Level</div>
+                <div><span style="color: var(--color-low);">──</span> -V Level</div>
+                <div><span style="color: var(--color-violation);">■</span> Violation/Substitution Bit</div>
+             </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
